@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('progressions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs');
 
-    $table->foreignId('formation_id')
-        ->constrained('formations');
+           $table->bigInteger('utilisateur_id')->nullable();
+
+        
+           $table->bigInteger('formation_id')->nullable();
 
     $table->decimal('taux_completion', 5, 2)
         ->default(0);

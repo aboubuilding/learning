@@ -14,18 +14,10 @@ return new class extends Migration
         Schema::create('message_forums', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('forum_discussion_id')
-        ->constrained('forums_discussion')
-        ->cascadeOnDelete();
+             $table->bigInteger('forum_discussion_id')->nullable();
+             $table->bigInteger('utilisateur_id')->nullable();
+             $table->bigInteger('message_parent_id')->nullable();
 
-    $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs')
-        ->cascadeOnDelete();
-
-    $table->foreignId('message_parent_id')
-        ->nullable()
-        ->constrained('messages_forum')
-        ->nullOnDelete();
 
     $table->text('contenu');
 

@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('evaluation_ressources', function (Blueprint $table) {
             $table->id();
-$table->foreignId('formation_id')
-        ->constrained('formations')
-        ->cascadeOnDelete();
 
-    $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs')
-        ->cascadeOnDelete();
+
+                $table->bigInteger('formation_id')->nullable();
+                $table->bigInteger('utilisateur_id')->nullable();
+
 
     $table->tinyInteger('note')
         ->comment('1 à 5');

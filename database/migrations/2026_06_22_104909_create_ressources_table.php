@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('ressources', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('module_id')
-        ->constrained('modules')
-        ->cascadeOnDelete();
+
+               $table->bigInteger('module_id')->nullable();
 
     $table->string('titre');
 

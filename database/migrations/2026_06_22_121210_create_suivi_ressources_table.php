@@ -14,13 +14,9 @@ return new class extends Migration
         Schema::create('suivi_ressources', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs')
-        ->cascadeOnDelete();
 
-    $table->foreignId('ressource_pedagogique_id')
-        ->constrained('ressources_pedagogiques')
-        ->cascadeOnDelete();
+            $table->bigInteger('utilisateur_id')->nullable();
+            $table->bigInteger('ressource_pedagogique_id')->nullable();
 
     $table->boolean('consultee')
         ->default(false);
@@ -40,7 +36,6 @@ return new class extends Migration
     $table->timestamp('date_completion')
         ->nullable();
 
-    $table->timestamps();
 
     $table->unique([
         'utilisateur_id',

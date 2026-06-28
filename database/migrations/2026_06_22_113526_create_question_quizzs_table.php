@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('question_quizzs', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('quiz_id')
-        ->constrained('quiz')
-        ->cascadeOnDelete();
+         $table->bigInteger('quiz_id')->nullable();
 
     $table->text('question');
 
@@ -27,8 +25,6 @@ return new class extends Migration
         ->default(1);
 
         $table->tinyInteger('etat')->default(1)->comment('1: présent, 2: supprimé (soft delete)');
-
-
 
             $table->timestamps();
         });

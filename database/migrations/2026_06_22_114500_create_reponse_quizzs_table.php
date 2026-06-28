@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('reponse_quizzs', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('question_quiz_id')
-        ->constrained('questions_quiz')
-        ->cascadeOnDelete();
+        $table->bigInteger('question_quiz_id')->nullable();
 
     $table->text('reponse');
 

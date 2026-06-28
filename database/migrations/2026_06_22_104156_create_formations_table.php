@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('categorie_formation_id')
-        ->constrained('categories_formations');
-
-    $table->foreignId('formateur_id')
-        ->constrained('utilisateurs');
+          $table->bigInteger('categorie_formation_id')->nullable();
+          $table->bigInteger('formateur_id')->nullable();
 
     $table->string('titre');
 

@@ -14,13 +14,10 @@ return new class extends Migration
         Schema::create('utilisateur_roles', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs')
-        ->cascadeOnDelete();
 
-    $table->foreignId('role_id')
-        ->constrained('roles')
-        ->cascadeOnDelete();
+                       $table->bigInteger('user_id')->nullable();
+                       $table->bigInteger('role_id')->nullable();
+
 
         $table->tinyInteger('etat')->default(1)->comment('1: présent, 2: supprimé (soft delete)');
 

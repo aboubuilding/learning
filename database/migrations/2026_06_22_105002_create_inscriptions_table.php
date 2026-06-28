@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
 
-             $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs');
 
-    $table->foreignId('formation_id')
-        ->constrained('formations');
+            $table->bigInteger('utilisateur_id')->nullable();
+            $table->bigInteger('formation_id')->nullable();
 
     $table->dateTime('date_inscription');
 
@@ -29,7 +27,6 @@ return new class extends Migration
         'annulee'
     ])->default('active');
 
-    $table->timestamps();
 
     $table->unique([
         'utilisateur_id',

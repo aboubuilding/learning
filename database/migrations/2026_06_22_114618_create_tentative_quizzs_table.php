@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('tentative_quizzs', function (Blueprint $table) {
             $table->id();
 
-             $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs');
-
-    $table->foreignId('quiz_id')
-        ->constrained('quiz');
+               $table->bigInteger('utilisateur_id')->nullable();
+               $table->bigInteger('quiz_id')->nullable();
 
     $table->integer('score');
 

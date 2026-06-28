@@ -14,13 +14,9 @@ return new class extends Migration
         Schema::create('participant_sessions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('session_formation_id')
-        ->constrained('sessions_formation')
-        ->cascadeOnDelete();
 
-    $table->foreignId('utilisateur_id')
-        ->constrained('utilisateurs')
-        ->cascadeOnDelete();
+               $table->bigInteger('session_formation_id')->nullable();
+               $table->bigInteger('utilisateur_id')->nullable();
 
     $table->boolean('presence')
         ->default(false);
@@ -28,7 +24,6 @@ return new class extends Migration
     $table->datetime('date_inscription')
         ->nullable();
 
-    $table->timestamps();
 
     $table->unique([
         'session_formation_id',

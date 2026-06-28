@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('session_formations', function (Blueprint $table) {
             $table->id();
 
-             $table->foreignId('formation_id')
-        ->constrained('formations')
-        ->cascadeOnDelete();
+
+        $table->bigInteger('formation_id')->nullable();
 
     $table->string('titre');
 

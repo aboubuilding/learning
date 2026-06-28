@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('journal_activites', function (Blueprint $table) {
             $table->id();
 
-             $table->foreignId('utilisateur_id')
-        ->nullable()
-        ->constrained('utilisateurs');
+            $table->bigInteger('utilisateur_id')->nullable();
 
     $table->string('action');
 
@@ -30,7 +28,6 @@ return new class extends Migration
         ->nullable();
 
         $table->tinyInteger('etat')->default(1)->comment('1: présent, 2: supprimé (soft delete)');
-
 
 
             $table->timestamps();
