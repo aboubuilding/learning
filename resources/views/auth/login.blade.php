@@ -8,19 +8,18 @@
 
     <!-- Kumbh Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (gratuit) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <style>
         /* ============================================================
-           RESET & VARIABLES (alignées sur home.blade)
+           RESET & VARIABLES
         ============================================================ */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* Palette principale AquaForm */
             --petrol: #0F3B43;
             --teal: #1A7E86;
             --teal-light: #24A1A9;
@@ -34,8 +33,6 @@
             --white: #FFFFFF;
             --danger: #c0392b;
             --success: #1a6e40;
-
-            /* Rayons et espacements */
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -441,6 +438,25 @@
         .btn-login:hover i { transform: translateX(4px); }
         .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
 
+        /* ---- Lien d'inscription (amélioré) ---- */
+        .register-link {
+            margin-top: 1.2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+        }
+        .register-link a {
+            color: var(--teal);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1.5px solid transparent;
+            transition: 0.2s;
+        }
+        .register-link a:hover {
+            border-bottom-color: var(--teal);
+            color: var(--teal-light);
+        }
+
         /* ---- Modules chips ---- */
         .modules-hint {
             display: flex;
@@ -625,7 +641,7 @@
 
 <body>
 
-{{-- ===================== MODAL ===================== --}}
+{{-- ===================== MODAL MOT DE PASSE OUBLIÉ ===================== --}}
 <div class="modal-overlay" id="forgotModal">
     <div class="modal-box">
         <div class="modal-head">
@@ -844,6 +860,12 @@
                 <span>Se connecter</span>
                 <i class="fas fa-arrow-right"></i>
             </button>
+
+            {{-- LIEN D'INSCRIPTION (AMÉLIORÉ) --}}
+            <div class="register-link">
+                Vous n'avez pas encore de compte ?
+                <a href="{{ route('register') }}">S'inscrire</a>
+            </div>
         </form>
 
         <div class="modules-hint">
@@ -886,7 +908,7 @@
     @endif
 
     $(document).ready(function () {
-        // Sélecteur de rôle
+        // ---- Sélecteur de rôle ----
         $('.role-btn').on('click', function () {
             $('.role-btn').removeClass('active');
             $(this).addClass('active');
@@ -896,7 +918,7 @@
             $('#email').attr('placeholder', placeholder);
         });
 
-        // Toggle mot de passe
+        // ---- Toggle mot de passe ----
         $('#togglePw').on('click', function () {
             const pw = $('#password');
             const icon = $('#eyeIcon');
@@ -909,7 +931,7 @@
             }
         });
 
-        // Modal mot de passe oublié
+        // ---- Modal mot de passe oublié ----
         $('#forgotLink').on('click', function (e) {
             e.preventDefault();
             $('#forgotModal').addClass('open');
@@ -922,7 +944,7 @@
             if (e.target === this) $(this).removeClass('open');
         });
 
-        // Envoi lien (simulation)
+        // ---- Envoi lien ----
         $('#modalSend').on('click', function () {
             const email = $('#resetEmail').val().trim();
             if (!email || !isValidEmail(email)) {
@@ -935,7 +957,7 @@
             $('#resetEmail').val('');
         });
 
-        // Validation formulaire
+        // ---- Validation formulaire ----
         $('#loginForm').on('submit', function (e) {
             const email = $('#email').val().trim();
             const password = $('#password').val().trim();
@@ -971,7 +993,7 @@
             btn.html('<span>Connexion...</span> <i class="fas fa-spinner fa-spin"></i>');
         });
 
-        // Nettoyage erreurs à la saisie
+        // ---- Nettoyage erreurs à la saisie ----
         $('#email, #password').on('input', function () {
             $(this).removeClass('is-invalid');
             $(this).closest('.field').find('.field-error').remove();
